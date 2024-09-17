@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Calculater</title>
+    <link rel="shortcut icon" href="{% static 'images/django-icon.svg' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <div class="grid-container">
+        <div class="grid-item"></div>
+        <div class="grid-item">
+            <h3>Django Calculator</h3>
+            <div class="calculator_form">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="first_number_div">
+                        <!-- <label for="first_number">Enter the First Number</label> -->
+                        <input type="number" id="first_number" name="first_number" placeholder="Enter the First Number" required>
+                    </div>
+                    <div class="second_number_div">
+                        <!-- <label for="second_number">Enter the Second Number</label> -->
+                        <input type="number" id="second_number" name="second_number" placeholder="Enter the Second Number" required>
+                    </div>
+                   <div class="select_choice">
+                        <!-- <label for="operator">Selected Choice:</label> -->
+                        <select name="operator" id="operator">
+                        <option value="+">Addition</option>
+                        <option value="-">Subtration</option>
+                        <option value="*">Multification</option>
+                        <option value="/">Divistion</option>
+                        </option>
+                        </select>
+                   </div>
+                    <div class="submit_button">
+                        <button type="submit" class="btn_submit">Calculate</button>
+                    </div>
+                    <div class="result">
+                        <label for="result">Use {{ operator }} is Result:</label>
+                        {% if error %}
+                            <input type="text" id="result" value="{{error}}" readonly>
+                        {% else %}
+                            <input type="text" id="result" value="{{result}}" readonly>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="grid-item"></div>
+    </div>
+</body>
+</html>
+
+
+<!-- <div class="all_button">
+    <div class="addition_button">
+        <button class="btn-addition">Addition</button>
+    </div>
+    <div class="subtration_button">
+        <button class="btn-subtration">Subtration</button>
+    </div>
+    <div class="multification_button">
+        <button class="btn-multification">Multification</button>
+    </div>
+    <div class="divistion_button">
+        <button class="btn-divistion">Divistion</button>
+    </div>
+</div> -->
